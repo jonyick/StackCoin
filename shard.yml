@@ -8,8 +8,9 @@ dependencies:
   discordcr:
     github: discordcr/discordcr
     branch: master
-  kemal:
-    github: kemalcr/kemal
+  action-controller:
+    github: spider-gazelle/action-controller
+    version: "~> 3.0"
   dotenv:
     github: gdotdesign/cr-dotenv
   sqlite3:
@@ -18,3 +19,7 @@ dependencies:
     github: mamantoha/humanize_time
   jwt:
     github: crystal-community/jwt
+  json_mapping:
+    github: crystal-lang/json_mapping.cr
+  kilt:
+    github: jeromegn/kilt

@@ -1,5 +1,7 @@
 require "log"
 
+require "json_mapping" # TODO remove once deps no longer have usages of JSON.mapping
+
 require "dotenv"
 
 require "./stackcoin/*"
@@ -30,7 +32,7 @@ stats = StackCoin::Statistics.new(db, banned)
 auth = StackCoin::Auth.new(db, bank, config.jwt_secret_key)
 
 bot = StackCoin::Bot.new(config, bank, stats, auth, banned)
-api = StackCoin::Api.new(config, bank, stats, auth)
+api = StackCoin::Api.new
 
 StackCoin::Log.info { "Spawning API" }
 spawn (api.run!)
@@ -41,6 +43,7 @@ spawn (bot.run!)
 {Signal::INT, Signal::TERM}.each &.trap do
   StackCoin::Log.info { "Got signal to die" }
   db.close
+  spawn (api.close)
   puts("bye!")
   exit
 end
