@@ -50,7 +50,7 @@ class StackCoin::Database
   end
 
   def backup
-    db_file = @config.database_url.lchop "sqlite3://"
+    db_file = @config.database_url.lchop("sqlite3://")
     backup_file = "#{db_file}.backup.#{Time.utc}.gz"
     Log.info { "gzipping #{db_file} to #{backup_file}..." }
 

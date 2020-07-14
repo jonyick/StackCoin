@@ -8,7 +8,7 @@ class StackCoin::Api
 
     class LedgerPostBody
       include JSON::Serializable
-      property to_id : UInt64,
+      property to_id : UInt64
       property amount : Int32
     end
 

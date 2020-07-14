@@ -6,10 +6,6 @@ require "dotenv"
 
 require "./stackcoin/*"
 
-stdout_backend = Log::IOBackend.new
-Log.builder.bind "*", :info, stdout_backend
-Log.builder.bind "stackcoin", :debug, stdout_backend
-
 StackCoin::Log.info { "Loading .env" }
 begin
   Dotenv.load
@@ -38,7 +34,7 @@ StackCoin::Log.info { "Spawning API" }
 spawn (api.run!)
 
 StackCoin::Log.info { "Spawning Bot" }
-spawn (bot.run!)
+# spawn (bot.run!)
 
 {Signal::INT, Signal::TERM}.each &.trap do
   StackCoin::Log.info { "Got signal to die" }
